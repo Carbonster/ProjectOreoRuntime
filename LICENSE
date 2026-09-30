@@ -1,0 +1,36 @@
+Project Oreo Runtime
+
+You may view, study, and use this project as intended, including using its official releases,
+APIs, or integration points in your own mods where applicable. Private modifications for
+personal use, testing, or research are allowed, but you may not publicly distribute, publish,
+maintain, rebrand, or release modified versions or derivative works of this project without the
+author's permission.
+
+A mod that uses this project's public API or integration points is not a derivative work for
+the purposes of this licence.
+
+If this project has received no public update for twelve months, permission to publish
+maintained forks is granted automatically.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+This product bundles third-party components. Their licences and full texts are kept alongside
+the vendored sources under native/*/third_party/, and are listed together in
+src/oreo_runtime/THIRD_PARTY_NOTICES.md.
+
+  SDL2             zlib licence      native/controller_support/third_party/SDL2/LICENSE.txt
+  Dear ImGui       MIT               native/overlay/third_party/imgui/LICENSE.txt
+  MinHook          BSD 2-clause      native/overlay/third_party/minhook/LICENSE.txt
+  Vulkan-Headers   Apache-2.0 / MIT  native/overlay/third_party/Vulkan-Headers/LICENSE.md
+  Roboto (font)    Apache-2.0        src/oreo_runtime/THIRD_PARTY_NOTICES.md
+
+SDL2 ships as a DLL next to the controller helper; the others are compiled into the overlay.
+
+Project Oreo Runtime is loaded by pyMHF and NMSpy, and is installed by Project Oreo Launcher.
+Those are separate projects under their own licences and no part of them is included here.

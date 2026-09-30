@@ -1,0 +1,105 @@
+{
+  "format": 2,
+  "palette": {
+    "panel": "#0b1118f0",
+    "edge": "#7ddcff",
+    "text": "#e6f0fa",
+    "muted": "#96aabe",
+    "field": "#1a2633",
+    "fieldHover": "#243446",
+    "fieldActive": "#2e4459"
+  },
+  "widgetStyle": {
+    "background": "field",
+    "hover": "fieldHover",
+    "active": "fieldActive",
+    "text": "text",
+    "accent": "edge",
+    "border": "edge",
+    "popup": "panel",
+    "hint": "muted",
+    "focus": "edge",
+    "radius": 12,
+    "thickness": 2
+  },
+  "screens": [
+    {
+      "id": "demo",
+      "size": [880, 760],
+      "anchor": "center",
+      "valign": "center",
+      "elements": [
+        {"id": "bg", "shape": "rect", "x": 0, "y": 0, "w": 1, "h": 1,
+         "fill": "panel", "border": "edge", "radius": 20, "thickness": 3},
+        {"id": "title", "shape": "text", "x": 0.05, "y": 0.035, "text": "WIDGETS DEMO",
+         "color": "edge", "size": 40},
+
+        {"id": "gp_body", "shape": "rect", "origin": "center", "x": 0.9091, "y": 0.0592,
+         "w": 0.0864, "h": 0.0553, "radius": 14, "border": "edge", "thickness": 3,
+         "visible": false},
+        {"id": "gp_dpad_h", "shape": "rect", "origin": "center", "x": 0.8875, "y": 0.0592,
+         "w": 0.0182, "h": 0.0066, "fill": "edge", "visible": false},
+        {"id": "gp_dpad_v", "shape": "rect", "origin": "center", "x": 0.8875, "y": 0.0592,
+         "w": 0.0057, "h": 0.0211, "fill": "edge", "visible": false},
+        {"id": "gp_btn_a", "shape": "circle", "x": 0.9261, "y": 0.0645, "r": 0.0045,
+         "fill": "edge", "visible": false},
+        {"id": "gp_btn_b", "shape": "circle", "x": 0.9364, "y": 0.0526, "r": 0.0045,
+         "fill": "edge", "visible": false},
+
+        {"id": "kb_body", "shape": "rect", "origin": "center", "x": 0.8886, "y": 0.0632,
+         "w": 0.0545, "h": 0.0395, "radius": 4, "border": "edge", "thickness": 2.5,
+         "visible": false},
+        {"id": "kb_k1", "shape": "rect", "origin": "center", "x": 0.8716, "y": 0.0539,
+         "w": 0.0068, "h": 0.0066, "fill": "edge", "visible": false},
+        {"id": "kb_k2", "shape": "rect", "origin": "center", "x": 0.883, "y": 0.0539,
+         "w": 0.0068, "h": 0.0066, "fill": "edge", "visible": false},
+        {"id": "kb_k3", "shape": "rect", "origin": "center", "x": 0.8943, "y": 0.0539,
+         "w": 0.0068, "h": 0.0066, "fill": "edge", "visible": false},
+        {"id": "kb_k4", "shape": "rect", "origin": "center", "x": 0.9057, "y": 0.0539,
+         "w": 0.0068, "h": 0.0066, "fill": "edge", "visible": false},
+        {"id": "kb_k5", "shape": "rect", "origin": "center", "x": 0.8716, "y": 0.0645,
+         "w": 0.0068, "h": 0.0066, "fill": "edge", "visible": false},
+        {"id": "kb_k6", "shape": "rect", "origin": "center", "x": 0.883, "y": 0.0645,
+         "w": 0.0068, "h": 0.0066, "fill": "edge", "visible": false},
+        {"id": "kb_k7", "shape": "rect", "origin": "center", "x": 0.8943, "y": 0.0645,
+         "w": 0.0068, "h": 0.0066, "fill": "edge", "visible": false},
+        {"id": "kb_k8", "shape": "rect", "origin": "center", "x": 0.9057, "y": 0.0645,
+         "w": 0.0068, "h": 0.0066, "fill": "edge", "visible": false},
+        {"id": "kb_space", "shape": "rect", "origin": "center", "x": 0.8886, "y": 0.075,
+         "w": 0.0295, "h": 0.0053, "fill": "edge", "visible": false},
+        {"id": "ms_body", "shape": "rect", "origin": "center", "x": 0.942, "y": 0.0632,
+         "w": 0.025, "h": 0.0421, "radius": 11, "border": "edge", "thickness": 2.5,
+         "visible": false},
+        {"id": "ms_split", "shape": "line", "x": 0.942, "y": 0.0434, "x2": 0.942, "y2": 0.0566,
+         "color": "edge", "thickness": 2, "visible": false},
+
+        {"id": "go", "widget": "button", "x": 0.05, "y": 0.13, "w": 0.4, "h": 0.095,
+         "label": "Press me", "size": 32},
+        {"id": "clicks", "shape": "text", "x": 0.5, "y": 0.155, "text": {"bind": "clicks"},
+         "color": "muted", "size": 32},
+
+        {"id": "sound", "widget": "toggle", "x": 0.05, "y": 0.26, "w": 0.4,
+         "label": "Sound", "value": true, "size": 32},
+
+        {"id": "volume", "widget": "slider", "x": 0.05, "y": 0.37, "w": 0.9, "h": 0.085,
+         "min": 0, "max": 100, "step": 1, "value": 40, "suffix": "%", "size": 32},
+
+        {"id": "mode", "widget": "dropdown", "x": 0.05, "y": 0.48, "w": 0.55, "h": 0.085,
+         "options": ["Easy", "Normal", "Hard"], "value": "Normal", "size": 32},
+
+        {"id": "name", "widget": "input", "x": 0.05, "y": 0.59, "w": 0.9, "h": 0.085,
+         "hint": "Type a name, Enter to submit", "maxLength": 32, "size": 32},
+
+        {"id": "state", "shape": "text", "x": 0.05, "y": 0.71, "text": {"bind": "state"},
+         "color": "text", "size": 28},
+        {"id": "last", "shape": "text", "x": 0.05, "y": 0.77, "text": {"bind": "last"},
+         "color": "muted", "size": 28},
+
+        {"id": "reset", "widget": "button", "x": 0.05, "y": 0.86, "w": 0.3, "h": 0.085,
+         "label": "Reset", "size": 32},
+        {"id": "hint", "shape": "text", "x": 0.62, "y": 0.88, "text": "F9 closes",
+         "color": "muted", "size": 28}
+      ]
+    }
+  ]
+}

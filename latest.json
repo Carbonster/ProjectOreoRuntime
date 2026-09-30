@@ -1,0 +1,12 @@
+{
+  "_comment": "Read by Project Oreo Launcher to decide whether a newer Runtime is available. Update it in the same commit that publishes a release, or the launcher keeps offering the old one. The launcher only ever downloads from github.com and githubusercontent.com, whatever this file says, and checks the size and the hash below before installing anything.",
+  "schema_version": 1,
+  "version": "0.1.6",
+  "asset": {
+    "file": "project_oreo_runtime-0.1.6-py3-none-win_amd64.whl",
+    "url": "https://github.com/Carbonster/ProjectOreoRuntime/releases/download/v0.1.6/project_oreo_runtime-0.1.6-py3-none-win_amd64.whl",
+    "size": 1129719,
+    "sha256": "8026d6a5b42f979d17d770c97930d6404a36668957a27619e97ef1ed1750ea10"
+  },
+  "notes_url": "https://github.com/Carbonster/ProjectOreoRuntime/releases/tag/v0.1.6"
+}

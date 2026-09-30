@@ -1,0 +1,15 @@
+build/
+validation/
+dist/
+release/
+src/oreo_runtime/bin/
+src/oreo_runtime/licenses/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyd
+*.obj
+*.pdb
+*.ilk
+*.zip
+logs/

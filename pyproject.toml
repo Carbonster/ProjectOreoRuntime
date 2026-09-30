@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "project-oreo-runtime"
+version = "0.1.6"
+description = "Native overlay and controller runtime for No Man's Sky pyMHF mods"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Carbonster" }]
+classifiers = [
+    "Environment :: Win32 (MS Windows)",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+    "Programming Language :: Python :: 3",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+oreo_runtime = [
+    "bin/*.dll",
+    "bin/*.exe",
+    "assets/fonts/*.ttf",
+    "licenses/*",
+    "THIRD_PARTY_NOTICES.md",
+]
