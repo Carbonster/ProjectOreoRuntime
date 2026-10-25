@@ -13,60 +13,89 @@ if(NOT CMAKE_SIZEOF_VOID_P EQUAL 8)
     message(FATAL_ERROR "A 64-bit build is required. Configure with -A x64.")
 endif()
 
-set(IMGUI_DIR "${CMAKE_CURRENT_SOURCE_DIR}/third_party/imgui")
 set(VULKAN_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/third_party/Vulkan-Headers/include")
 
 add_subdirectory(third_party/minhook)
+include(third_party/rmlui.cmake)
 
-add_library(oreo_overlay SHARED
+# Everything that reads what arrives over the pipe, testable without a game.
+set(WIRE_SOURCES
+    src/input/active_device.cpp
+    src/input/pad_input.cpp
+    src/ipc/json_scalar.cpp
+    src/ipc/protocol.cpp
+    src/ui/file_access.cpp
+    src/ui/rml_source.cpp
+    src/ui/ui_commands.cpp
+)
+
+# Mods' documents in RmlUi, testable without a GPU.
+set(DOCUMENT_SOURCES
+    src/ipc/outbox.cpp
+    src/ui/documents.cpp
+    src/ui/element_events.cpp
+    src/ui/polygon_element.cpp
+    src/ui/rml_system.cpp
+    src/ui/visor_filter.cpp
+)
+
+set(OVERLAY_SOURCES
+    ${WIRE_SOURCES}
+    ${DOCUMENT_SOURCES}
     src/dllmain.cpp
-    src/ui_document.cpp
-    src/version.rc
-    ${IMGUI_DIR}/imgui.cpp
-    ${IMGUI_DIR}/imgui_draw.cpp
-    ${IMGUI_DIR}/imgui_tables.cpp
-    ${IMGUI_DIR}/imgui_widgets.cpp
-    ${IMGUI_DIR}/backends/imgui_impl_vulkan.cpp
-    ${IMGUI_DIR}/backends/imgui_impl_win32.cpp
+    src/diagnostics.cpp
+    src/game/game_image.cpp
+    src/game/game_input.cpp
+    src/game/game_window.cpp
+    src/input/rml_input.cpp
+    src/input/window_input.cpp
+    src/ipc/pipe_server.cpp
+    src/render/gpu_commands.cpp
+    src/render/gpu_context.cpp
+    src/render/gpu_memory.cpp
+    src/render/gpu_timer.cpp
+    src/render/overlay_renderer.cpp
+    src/render/rml/filters.cpp
+    src/render/rml/frame_arena.cpp
+    src/render/rml/gradients.cpp
+    src/render/rml/graveyard.cpp
+    src/render/rml/image_decoder.cpp
+    src/render/rml/pipelines.cpp
+    src/render/rml/recorder.cpp
+    src/render/rml/rml_renderer.cpp
+    src/render/rml/targets.cpp
+    src/render/rml/textures.cpp
+    src/render/surface_query.cpp
+    src/render/vk_functions.cpp
+    src/render/vk_hooks.cpp
+    src/ui/ui_frame.cpp
+    src/ui/ui_runtime.cpp
 )
 
-target_include_directories(oreo_overlay PRIVATE
-    src
-    ${VULKAN_INCLUDE}
-    third_party/minhook/include
-    ${IMGUI_DIR}
-    ${IMGUI_DIR}/backends
-)
-
-target_compile_definitions(oreo_overlay PRIVATE
-    VK_NO_PROTOTYPES
-    IMGUI_IMPL_VULKAN_NO_PROTOTYPES
-    IMGUI_DISABLE_DEFAULT_SHELL_FUNCTIONS
-    # The gamepad reaches ImGui from the Runtime's own controller helper, which reads Xbox and
-    # PlayStation pads alike. The backend's XInput reading would only see the former, twice.
-    IMGUI_IMPL_WIN32_DISABLE_GAMEPAD
-)
-
-target_compile_options(oreo_overlay PRIVATE /utf-8)
-set_source_files_properties(src/dllmain.cpp PROPERTIES COMPILE_OPTIONS "/W4")
-
-target_link_libraries(oreo_overlay PRIVATE minhook)
+add_library(oreo_overlay SHARED ${OVERLAY_SOURCES} src/version.rc)
+target_include_directories(oreo_overlay PRIVATE src ${VULKAN_INCLUDE} third_party/minhook/include)
+target_compile_definitions(oreo_overlay PRIVATE VK_NO_PROTOTYPES VK_USE_PLATFORM_WIN32_KHR)
+target_compile_options(oreo_overlay PRIVATE /utf-8 /W4)
+target_link_libraries(oreo_overlay PRIVATE minhook rmlui_core windowscodecs ole32)
 set_target_properties(oreo_overlay PROPERTIES OUTPUT_NAME "oreo_overlay")
 
-# The document reader is the only part of the Runtime that parses input it did not write, and
-# the pipe is reachable by any process running as this user. It gets its own test program:
-# a crash in there is a crash inside somebody's game.
-#
-# ImGui is compiled in rather than linked because the model uses its colour and vector types;
-# nothing here creates a context or draws.
-add_executable(ui_document_test
-    tests/ui_document_test.cpp
-    src/ui_document.cpp
-    ${IMGUI_DIR}/imgui.cpp
-    ${IMGUI_DIR}/imgui_draw.cpp
-    ${IMGUI_DIR}/imgui_tables.cpp
-    ${IMGUI_DIR}/imgui_widgets.cpp
-)
-target_include_directories(ui_document_test PRIVATE src ${IMGUI_DIR})
-target_compile_definitions(ui_document_test PRIVATE IMGUI_DISABLE_DEFAULT_SHELL_FUNCTIONS)
-target_compile_options(ui_document_test PRIVATE /utf-8 /W4)
+# The pipe is reachable by any process running as this user, and a crash in what reads it is a
+# crash inside somebody's game: that half gets a test program of its own.
+add_executable(overlay_tests tests/wire_test.cpp ${WIRE_SOURCES})
+target_include_directories(overlay_tests PRIVATE src)
+target_compile_options(overlay_tests PRIVATE /utf-8 /W4)
+target_link_libraries(overlay_tests PRIVATE rmlui_core)
+
+add_executable(documents_test tests/documents_test.cpp ${WIRE_SOURCES} ${DOCUMENT_SOURCES})
+target_include_directories(documents_test PRIVATE src tests)
+target_compile_definitions(documents_test PRIVATE
+    OREO_ASSETS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../../src/oreo_runtime/assets"
+    OREO_EXAMPLES_DIR="${CMAKE_CURRENT_SOURCE_DIR}/../../examples")
+target_compile_options(documents_test PRIVATE /utf-8 /W4)
+target_link_libraries(documents_test PRIVATE rmlui_core)
+
+# A modder's tool: what RmlUi says about a document, without starting the game.
+add_executable(rml_check tools/rml_check.cpp ${WIRE_SOURCES} ${DOCUMENT_SOURCES})
+target_include_directories(rml_check PRIVATE src tests)
+target_compile_options(rml_check PRIVATE /utf-8 /W4)
+target_link_libraries(rml_check PRIVATE rmlui_core)

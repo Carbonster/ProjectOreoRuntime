@@ -14,3 +14,5 @@ CMakeLists.txt text eol=lf
 *.dll binary
 *.exe binary
 *.lib binary
+*.vert text eol=lf
+*.frag text eol=lf

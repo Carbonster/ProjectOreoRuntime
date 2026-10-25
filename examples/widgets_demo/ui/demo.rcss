@@ -1,0 +1,76 @@
+.panel {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 640px;
+    margin-left: -320px;
+    margin-top: -300px;
+    padding: 28px 36px;
+    border-radius: 20px;
+    border: 2px #7ddcff80;
+    background-color: #0b1118f0;
+    box-shadow: #7ddcff40 0 0 40px 4px;
+    animation: 0.3s cubic-out appear;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #7ddcff;
+}
+
+.device {
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px #7ddcff;
+    color: #7ddcff;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.row > * {
+    margin-right: 16px;
+}
+
+button {
+    width: 180px;
+    font-size: 22px;
+    decorator: linear-gradient(90deg, #1a2633, #243446);
+    transition: box-shadow 0.15s linear-in-out;
+}
+
+button:hover {
+    box-shadow: #7ddcff80 0 0 16px 0;
+}
+
+input.range {
+    width: 400px;
+}
+
+p {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.muted {
+    color: #96aabe;
+}
+
+.footer {
+    margin-top: 18px;
+    justify-content: space-between;
+}

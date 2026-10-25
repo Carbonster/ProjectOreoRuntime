@@ -1,0 +1,137 @@
+/*
+ * Laid under every mod document's own styles. RmlUi has no browser defaults of its own, so
+ * these give elements the display a web author expects, and widgets a plain look that a
+ * document restyles freely. The colours are variables: override them on body.
+ */
+
+body {
+    --oreo-text: #e6f0fa;
+    --oreo-muted: #96aabe;
+    --oreo-field: #1a2633;
+    --oreo-field-hover: #243446;
+    --oreo-field-active: #2e4459;
+    --oreo-accent: #7ddcff;
+    --oreo-popup: #0b1118f0;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-family: Roboto;   /* the Runtime's own font, assets/fonts/gamefont.ttf */
+    font-size: 16px;
+    color: var(--oreo-text);
+    nav: auto;
+}
+
+div, p, h1, h2, h3, h4, h5, h6, form, header, footer, section, ul, ol, li { display: block; }
+h1 { font-size: 32px; }
+h2 { font-size: 26px; }
+h3 { font-size: 20px; }
+em { font-style: italic; }
+strong, b { font-weight: bold; }
+
+table { box-sizing: border-box; display: table; }
+tr { box-sizing: border-box; display: table-row; }
+td { box-sizing: border-box; display: table-cell; }
+thead, tbody, tfoot { display: table-row-group; }
+
+/* Focusable, and walkable with the arrows and the pad. */
+button, input, select, textarea {
+    nav: auto;
+    tab-index: auto;
+    focus: auto;
+}
+
+button, input.submit {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    background-color: var(--oreo-field);
+    text-align: center;
+}
+button:hover, input.submit:hover { background-color: var(--oreo-field-hover); }
+button:active, input.submit:active { background-color: var(--oreo-field-active); }
+
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    border: 2px var(--oreo-accent);
+}
+
+button:disabled, input:disabled, select:disabled { opacity: 0.4; }
+
+input.text, input.password, textarea {
+    display: inline-block;
+    width: 200px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: var(--oreo-field);
+    cursor: text;
+}
+input.text, input.password { height: 24px; }
+textarea { height: 80px; }
+input:placeholder-shown, textarea:placeholder-shown { color: var(--oreo-muted); }
+
+input.checkbox, input.radio {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background-color: var(--oreo-field);
+}
+input.radio { border-radius: 9px; }
+input.checkbox:hover, input.radio:hover { background-color: var(--oreo-field-hover); }
+input.checkbox:checked, input.radio:checked { background-color: var(--oreo-accent); }
+
+input.range {
+    display: inline-block;
+    width: 200px;
+    height: 18px;
+}
+input.range slidertrack {
+    margin-top: 7px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--oreo-field);
+}
+input.range sliderbar {
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background-color: var(--oreo-accent);
+}
+input.range sliderbar:hover { background-color: var(--oreo-text); }
+input.range sliderarrowdec, input.range sliderarrowinc { width: 0; height: 0; }
+
+select {
+    display: inline-block;
+    width: 200px;
+    height: 28px;
+    text-align: left;
+}
+select selectvalue {
+    height: 20px;
+    padding: 4px 30px 4px 8px;
+    border-radius: 4px;
+    background-color: var(--oreo-field);
+}
+select:hover selectvalue { background-color: var(--oreo-field-hover); }
+select selectarrow {
+    width: 24px;
+    height: 28px;
+    decorator: linear-gradient(180deg, transparent 40%, var(--oreo-accent) 40%, var(--oreo-accent) 60%, transparent 60%);
+}
+select selectbox {
+    margin-top: 2px;
+    padding: 4px 0;
+    border-radius: 4px;
+    background-color: var(--oreo-popup);
+}
+select selectbox option { padding: 4px 8px; }
+select selectbox option:hover { background-color: var(--oreo-field-hover); }
+select selectbox option:checked { color: var(--oreo-accent); }
+
+scrollbarvertical { width: 8px; }
+scrollbarvertical slidertrack { background-color: transparent; }
+scrollbarvertical sliderbar { border-radius: 4px; background-color: var(--oreo-field-active); }
+scrollbarvertical sliderarrowdec, scrollbarvertical sliderarrowinc { width: 0; height: 0; }
+scrollbarhorizontal { height: 8px; }
+scrollbarhorizontal sliderbar { border-radius: 4px; background-color: var(--oreo-field-active); }
+scrollbarhorizontal sliderarrowdec, scrollbarhorizontal sliderarrowinc { width: 0; height: 0; }

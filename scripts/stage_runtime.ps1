@@ -24,7 +24,11 @@ foreach ($name in $required) {
 }
 
 $licenseSources = @{
-    "DearImGui.txt" = "native\overlay\third_party\imgui\LICENSE.txt"
+    "RmlUi.txt" = "native\overlay\third_party\RmlUi\LICENSE.txt"
+    "RmlUi-containers.txt" = "native\overlay\third_party\RmlUi\Include\RmlUi\Core\Containers\LICENSE.txt"
+    "FreeType.txt" = "native\overlay\third_party\freetype\docs\FTL.TXT"
+    "lunasvg.txt" = "native\overlay\third_party\lunasvg\LICENSE"
+    "plutovg.txt" = "native\overlay\third_party\plutovg\LICENSE"
     "MinHook.txt" = "native\overlay\third_party\minhook\LICENSE.txt"
     "SDL2.txt" = "native\controller_support\third_party\SDL2\LICENSE.txt"
     "Vulkan-Headers.md" = "native\overlay\third_party\Vulkan-Headers\LICENSE.md"

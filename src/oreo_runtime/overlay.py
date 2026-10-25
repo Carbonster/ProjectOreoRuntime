@@ -360,6 +360,10 @@ class OverlayComponent:
             # Kept here as well as passed on, so a UI handle made after the overlay connected
             # can still start out knowing the device; see api.start().
             self._input_device = line[6:].strip() or None
+        elif line.startswith("LOG "):
+            # RmlUi's complaints about a document: a typo in RCSS, an image that is not there.
+            level, _, text = line[4:].partition(" ")
+            logger.log(logging.ERROR if level == "error" else logging.WARNING, "UI: %s", text)
         elif line.startswith("OK "):
             logger.debug("Overlay accepted: %s", line[3:])
         else:

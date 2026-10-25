@@ -1,0 +1,46 @@
+<rml>
+<head>
+    <title>Widgets demo</title>
+    <link type="text/rcss" href="demo.rcss"/>
+</head>
+<body data-model="widgets_demo">
+    <div class="panel">
+        <div class="header">
+            <h1>WIDGETS DEMO</h1>
+            <div class="device" data-if="device == 'gamepad'">PAD</div>
+            <div class="device" data-if="device == 'mouse_keyboard'">MOUSE</div>
+        </div>
+
+        <div class="row">
+            <button id="go">Press me</button>
+            <span class="muted">{{ clicks }}</span>
+        </div>
+        <div class="row">
+            <input id="sound" type="checkbox" data-checked="sound"/>
+            <span>Sound</span>
+        </div>
+        <div class="row">
+            <input id="volume" type="range" min="0" max="100" step="1" data-value="volume"/>
+            <span>{{ volume }}%</span>
+        </div>
+        <div class="row">
+            <select id="mode" data-value="mode">
+                <option value="Easy">Easy</option>
+                <option value="Normal">Normal</option>
+                <option value="Hard">Hard</option>
+            </select>
+        </div>
+        <div class="row">
+            <input id="name" type="text" maxlength="32" placeholder="Type a name" data-value="name"/>
+        </div>
+
+        <p>sound {{ sound ? 'on' : 'off' }} · volume {{ volume }}% · mode {{ mode }} · name {{ name == '' ? '-' : name }}</p>
+        <p class="muted">{{ last }}</p>
+
+        <div class="row footer">
+            <button id="reset">Reset</button>
+            <span class="muted">F9 closes</span>
+        </div>
+    </div>
+</body>
+</rml>
