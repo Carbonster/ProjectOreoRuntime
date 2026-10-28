@@ -11,10 +11,10 @@ namespace game_input {
 namespace {
 
 // Every game question about input - "is jump pressed", "how far is the stick" - goes through
-// these two cTkInputManager methods. Checked against NMS.exe of 2026-09-30 and the build before.
+// these two cTkInputManager methods. Checked against NMS.exe of 2026-10-28.
 const char* kSigGetButtonInput =
-    "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 48 83 EC ? 49 63 F0 41 8B D9 48 63 FA 48 8B "
-    "E9 41 83 F9 FF 75 ? 8B 59 ? 83 FB 04 0F 84 ? ? ? ? 83 FB 05 0F 87";
+    "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 48 83 EC ? 41 8B D9 41 8B F0 8B EA 48 8B F9 "
+    "41 83 F9 FF 75 ? 8B 59 ? 83 FB 04 74 ? 83 FB 05 76";
 const char* kSigGetAnalogInput =
     "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 48 63 FA 41 8B D8 48 8B F1 41 83 F8 FF 75 ? 8B "
     "59 ? 83 FB 04 74 ? 83 FB 05 76";
